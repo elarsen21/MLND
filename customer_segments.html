@@ -12064,9 +12064,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong>
-The first sample seems likely to be a deli or sandwich shop, given the large amount of Delicatessen purchases.</p>
-<p>The second sample is probably a restaurant, using a large amount of fresh food and smaller amounts of the other categories.</p>
-<p>The third sample seems likely to be a grocery store, supermarket, or other retailer which also carries household supplies like detergents and paper.</p>
+The first sample seems likely to be a deli or sandwich shop, given the large amount of Delicatessen purchases and moderate spending on other food products with little spent on detergents and paper. The second sample is probably a restaurant, buying a large amount of fresh food and smaller amounts of the other categories. The third sample seems likely to be a supermarket or other retailer which also carries household supplies like detergents and paper.</p>
 
 </div>
 </div>
@@ -12093,7 +12091,7 @@ The first sample seems likely to be a deli or sandwich shop, given the large amo
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Make a copy of the DataFrame, using the &#39;drop&#39; function to drop the given feature</span>
@@ -12128,6 +12126,14 @@ The first sample seems likely to be a deli or sandwich shop, given the large amo
 </div>
 </div>
 
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/Users/leiflarsen/anaconda/envs/python2/lib/python2.7/site-packages/sklearn/cross_validation.py:44: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the refactored classes and functions are moved. Also note that the interface of the new CV iterators are different from that of this module. This module will be removed in 0.20.
+  &#34;This module will be removed in 0.20.&#34;, DeprecationWarning)
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -12149,7 +12155,7 @@ The first sample seems likely to be a deli or sandwich shop, given the large amo
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>I attempted to predict the Detergents_Paper feature. The R^2 score of the regressor was 0.5577, which</p>
+<p>I attempted to predict the Detergents_Paper feature. The R^2 score of the regressor was 0.5577, which indicates a fair ability of a model utilizing the other features to predict that feature. This would signal that perhaps this feature is not as independently predictive of customers' spending habits, and thus might not be necessary in order to segment the customers.</p>
 
 </div>
 </div>
@@ -13663,11 +13669,7 @@ SUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong>
-Grocery and Detergents_Paper appear to be fairly strongly correlated. 
-Milk also seems to be correlated with both Grocery and Detergents_Paper.
-This somewhat confirms my suspicions about Detergents_Paper possibly being an irrelevant feature, given its correlation with Grocery</p>
-<p>The other three are more weakly correlated??</p>
-<p>The data is not normally distributed. Most of the data points lie on THE LOW END OF THE SPECTRUM</p>
+Grocery and Detergents_Paper appear to be fairly strongly correlated. Milk also seems to be correlated with both Grocery and Detergents_Paper. This confirms my suspicions about Detergents_Paper possibly being an irrelevant feature, given its correlation with Grocery and Milk. These data are not normally distributed: most of the data points are skewed towards the low end of the spectrum.</p>
 
 </div>
 </div>
@@ -17970,8 +17972,7 @@ Once you have performed this implementation, the dataset will be stored in the v
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong>
-Sample 154 contains outliers for three different features.</p>
-<p>However,</p>
+Sample 154 contains outliers for three different features: Milk, Grocery, and Detergents_Paper. Sample 75 also appears in Grocery and Detergents_Paper. These are the only data points that are outliers for multiple features. However, I don't believe these data points should be removed because they are not outliers across the board but rather outliers for a small set of features. Their information might still be useful.</p>
 
 </div>
 </div>
@@ -18357,7 +18358,7 @@ SZKkDgOTJEmSJHUYmCRJkiSp438BHsbRKmgb4ekAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong>
-72.04% of the variance in the data is explained by the first and second principal component. 0.???? percent of the variance in the data is explained by the first four principal components.</p>
+72.04% of the variance in the data is explained by the first and second principal component. 93.14% of the variance in the data is explained by the first four principal components. So, the variation is explained primarily by decreases in the weights initially of Milk, Grocery, and Detergents_Paper in Dimension 1, followed by decreases in the weights of Fresh, Frozen, and Delicatessen in Dimension 2. That would indicate that these features are correlated together, and PCA is representing their collective effect in each dimension, thereby simplifying the number of dimensions needed to explain the data.</p>
 
 </div>
 </div>
@@ -18582,7 +18583,7 @@ SZKkDgOTJEmSJHUYmCRJkiSp438BHsbRKmgb4ekAAAAASUVORK5CYII=
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1175dc450&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1110bc690&gt;</pre>
 </div>
 
 </div>
@@ -19698,13 +19699,8 @@ TkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong>
-GOOG: k-means clustering advantages
-GOOG: gaussian mixture model clustering advantages</p>
-<p>K-means Clustering is FAST, ROBUST, and EASY TO UNDERSTAND. not as memory intensive... WORKS GREAT IF CLUSTERS ARE SPHERICAL</p>
-<p>Gaussian Mixture Modeling, on the other hand, is MORE FLEXIBLE and allows for mixed membership of clusters. That is, datapoints may belong to more than one cluster.
-<a href="https://www.quora.com/What-are-the-advantages-to-using-a-Gaussian-Mixture-Model-clustering-algorithm">https://www.quora.com/What-are-the-advantages-to-using-a-Gaussian-Mixture-Model-clustering-algorithm</a></p>
-<p>I will use the K-means algorithm, since I'm looking for an easy-to-interpret answer. TWO DIMENSIONS, SO ...
-Customer segments could be mixed, but NAH</p>
+K-means Clustering computes quickly (not too memory intensive), is reliable, and simple to interpret. It does an excellent job if clusters are well defined and not mixed among themselves. Gaussian Mixture Modeling, on the other hand, is more flexible and allows for mixed membership of clusters. That is, certain datapoints may belong to more than one cluster in GMM.</p>
+<p>I will use the K-means algorithm, since I'm looking for easy-to-interpret answers for business purposes. Customer segments could be mixed, but I would prefer to make a clearer delineation to identify clusters.</p>
 
 </div>
 </div>
@@ -19789,8 +19785,52 @@ Customer segments could be mixed, but NAH</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong>
-Using two clusters has the highest silhouette score.</p>
-<p>Make a TABLE of silhouette scores (2-10)</p>
+Using two clusters has the highest silhouette score, followed by three clusters.</p>
+<table>
+<thead><tr>
+<th style="text-align:center"># of Clusters</th>
+<th style="text-align:center">Silhouette Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0.4205</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">0.3974</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0.3306</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">0.3502</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">0.3544</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">0.3636</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">0.3594</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">0.3602</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">0.3500</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 </div>
@@ -20577,7 +20617,8 @@ AElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>Cluster 0 likely represents retail stores including grocery stores and supermarkets, while Cluster 1 most probably represents restaurants and ...</p>
+<p>Cluster 0 likely represents retail stores like supermarkets, which purchase large amounts of groceries and detergents/paper.</p>
+<p>Cluster 1 most probably represents restaurants, which use a large amount of fresh and frozen food, and less of groceries and detergents/paper.</p>
 
 </div>
 </div>
@@ -20630,7 +20671,7 @@ Sample point 2 predicted to be in Cluster 0
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>Yes, the model has correctly predicted in which cluster each sample point is located</p>
+<p>I would have guessed the first two samples to be in the Restaurants category, and the third sample to be in the Retailer category. The model has correctly predicted the cluster to which each sample would belong!</p>
 
 </div>
 </div>
@@ -20671,8 +20712,7 @@ Sample point 2 predicted to be in Cluster 0
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>One important factor in changing delivery frequency is freshness of the product. Restaurants would be particularly grateful for more frequent delivery from this perspective, allowing them to have the freshest food.</p>
-<p>Retailers may be less interested in freshness, and given their limited warehouse space, might be more pleased with a less frequent delivery schedule.</p>
+<p>The important factor in changing delivery frequency is freshness of the product. Restaurants, which buy large amounts of fresh food, would be particularly grateful for more frequent delivery from this perspective, allowing them to have the freshest food. Retailers may be less interested in freshness, and given their limited warehouse space, might be more pleased with a less frequent delivery schedule. They however might want more frequent delivery if they sell a lot of stock on hand and utilize just-in-time inventory.</p>
 
 </div>
 </div>
@@ -20695,8 +20735,7 @@ Sample point 2 predicted to be in Cluster 0
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>We could use a supervised learning classifier to predict an appropriate customer segment for each of the ten new customers. The model would train on the existing customer spending data to extrapolate to new customers</p>
-<p>What would be the TARGET VARIABLE?? customer segment</p>
+<p>We could use a supervised learning classifier to predict an appropriate customer segment for each of the ten new customers. The model would train on the existing customers' spending data, and then generate predictions for the appropriate customer segment of the new customers given their anticipated annual spending.</p>
 
 </div>
 </div>
@@ -21389,8 +21428,7 @@ iYiIiIhI1fl/yE91ps/0TokAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>These classifications are consistent with my previous clustering of customer segments with two clusters.</p>
-<p>Interestingly, there are some customers that defy the clean borders of the K-means clusters.</p>
+<p>These classifications are fairly consistent with my previous clustering of customer segments with two clusters. Interestingly, there are some customers that defy the clean borders of the K-means clusters, in particular many Hotels/Restaurants/Cafes wandering into the segment ostensibly belonging to Retailers. However, there is a fairly clear delineation at which very few Retailers would fall within the Hotels/Restaurants/Cafes cluster.</p>
 
 </div>
 </div>
