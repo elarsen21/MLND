@@ -11974,6 +11974,10 @@ div#notebook {
 <span class="n">samples</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">indices</span><span class="p">],</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
 <span class="k">print</span> <span class="s2">&quot;Chosen samples of wholesale customers dataset:&quot;</span>
 <span class="n">display</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+
+<span class="n">samples</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">((</span><span class="n">samples</span><span class="o">-</span><span class="n">data</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">/</span><span class="n">data</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;Number of standard deviations from mean values:&quot;</span>
+<span class="n">display</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12042,6 +12046,64 @@ div#notebook {
 
 </div>
 
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Number of standard deviations from mean values:
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Fresh</th>
+      <th>Milk</th>
+      <th>Grocery</th>
+      <th>Frozen</th>
+      <th>Detergents_Paper</th>
+      <th>Delicatessen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.484788</td>
+      <td>0.048933</td>
+      <td>-0.528665</td>
+      <td>-0.460479</td>
+      <td>-0.527355</td>
+      <td>1.048362</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.140799</td>
+      <td>-0.519028</td>
+      <td>-0.664037</td>
+      <td>-0.510591</td>
+      <td>-0.557382</td>
+      <td>-0.386549</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.474497</td>
+      <td>0.718495</td>
+      <td>1.151423</td>
+      <td>-0.394488</td>
+      <td>0.954031</td>
+      <td>0.203461</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -12064,7 +12126,10 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong>
-The first sample seems likely to be a deli or sandwich shop, given the large amount of Delicatessen purchases and moderate spending on other food products with little spent on detergents and paper. The second sample is probably a restaurant, buying a large amount of fresh food and smaller amounts of the other categories. The third sample seems likely to be a supermarket or other retailer which also carries household supplies like detergents and paper.</p>
+I analyzed the number of standard deviations from the mean for each sample by category.</p>
+<p>The first sample seems likely to be a deli or sandwich shop, given the disproportionate amount of Delicatessen purchases (over one standard deviation more), moderate spending on milk, and little spending in the other categories.</p>
+<p>The second sample is probably a small restaurant or fresh foods market, buying an increased amount of fresh food and lower amounts of the other categories (all roughly half a standard deviation less).</p>
+<p>The third sample seems likely to be a supermarket or other retailer, with about one standard deviation more purchases of milk, groceries, and household supplies like detergents and paper.</p>
 
 </div>
 </div>
@@ -18583,7 +18648,7 @@ SZKkDgOTJEmSJHUYmCRJkiSp438BHsbRKmgb4ekAAAAASUVORK5CYII=
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1110bc690&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1152d7c50&gt;</pre>
 </div>
 
 </div>
@@ -20544,6 +20609,8 @@ AElFTkSuQmCC
 <span class="n">true_centers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">true_centers</span><span class="p">),</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 <span class="n">true_centers</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">segments</span>
 <span class="n">display</span><span class="p">(</span><span class="n">true_centers</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Number of standard deviations from the mean:&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">((</span><span class="n">true_centers</span><span class="o">-</span><span class="n">data</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">/</span><span class="n">data</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -20596,6 +20663,55 @@ AElFTkSuQmCC
 
 </div>
 
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Number of standard deviations from the mean:
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Fresh</th>
+      <th>Milk</th>
+      <th>Grocery</th>
+      <th>Frozen</th>
+      <th>Detergents_Paper</th>
+      <th>Delicatessen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Segment 0</th>
+      <td>-0.666805</td>
+      <td>0.272037</td>
+      <td>0.480022</td>
+      <td>-0.448008</td>
+      <td>0.358758</td>
+      <td>-0.195691</td>
+    </tr>
+    <tr>
+      <th>Segment 1</th>
+      <td>-0.236991</td>
+      <td>-0.526296</td>
+      <td>-0.586360</td>
+      <td>-0.203501</td>
+      <td>-0.542486</td>
+      <td>-0.297461</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -20616,9 +20732,10 @@ AElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer:</strong></p>
-<p>Cluster 0 likely represents retail stores like supermarkets, which purchase large amounts of groceries and detergents/paper.</p>
-<p>Cluster 1 most probably represents restaurants, which use a large amount of fresh and frozen food, and less of groceries and detergents/paper.</p>
+<p><strong>Answer:</strong>
+I represented each category within the segment by its number of standard deviations from the mean.</p>
+<p>Cluster 0 likely represents retail stores, with notably large (upwards of half a standard deviation more) purchases of milk, groceries, and detergents/paper and lower than average fresh and frozen food purchases.</p>
+<p>Cluster 1 most probably represents restaurants, with moderate purchases of fresh and frozen food, and relatively small purchases of milk, groceries, and detergents/paper (more than half a standard deviation less).</p>
 
 </div>
 </div>
@@ -20711,8 +20828,9 @@ Sample point 2 predicted to be in Cluster 0
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer:</strong></p>
-<p>The important factor in changing delivery frequency is freshness of the product. Restaurants, which buy large amounts of fresh food, would be particularly grateful for more frequent delivery from this perspective, allowing them to have the freshest food. Retailers may be less interested in freshness, and given their limited warehouse space, might be more pleased with a less frequent delivery schedule. They however might want more frequent delivery if they sell a lot of stock on hand and utilize just-in-time inventory.</p>
+<p><strong>Answer:</strong>
+The important factor in changing delivery frequency is freshness of the product. Restaurants, which buy large amounts of fresh food, would be particularly grateful for more frequent delivery from this perspective, allowing them to have the freshest food. Retailers may be less interested in freshness, and given their limited warehouse space, might be more pleased with a less frequent delivery schedule. They however might want more frequent delivery if they sell a lot of stock on hand and utilize just-in-time inventory.</p>
+<p>We could test this hypothesis by running an A/B test. We would randomly select a small sample of all customers, begin using 3-day-per-week delivery with that sample, and monitor their purchase numbers. We could then analyze whether the change in their purchases relates to their customer segment. If so, we might have a good reason to change the delivery frequency for that segment of customers.</p>
 
 </div>
 </div>
