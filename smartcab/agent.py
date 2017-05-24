@@ -74,8 +74,8 @@ class LearningAgent(Agent):
         ## TO DO ##
         ###########
         # Calculate the maximum Q-value of all actions for a given state
-
-        maxQ = max[q(next state, all actions)]
+        # maxQ = max(state) ?
+        maxQ = max([q(next state, all actions)])
 
         return maxQ
 
@@ -89,11 +89,11 @@ class LearningAgent(Agent):
         # When learning, check if the 'state' is not in the Q-table
         # If it is not, create a new dictionary for that state
         #   Then, for each action available, set the initial Q-value to 0.0
-        while learning == True:
-            if state NOT IN Q-TABLE:
-                Q-TABLE.append({NEW DICTIONARY})
+        if learning == True:
+            if not state in self.Q:
+                self.Q.append(dict(state))
 
-        return
+        return self.Q
 
 
     def choose_action(self, state):
@@ -110,12 +110,12 @@ class LearningAgent(Agent):
         # When not learning, choose a random action
         # When learning, choose a random action with 'epsilon' probability
         #   Otherwise, choose an action with the highest Q-value for the current state
-        if learning == False:
+        if self.learning == False:
             action = random.choice(self.valid_actions)
-        elif:
-            action = random.choice(EPSILON PROBABILITY)
+        elif epsilon > random.random():
+            action = random.choice(self.valid_actions)
         else:
-            action = MAXQ
+            action = self.Q(get_maxQ)
 
         return action
 
@@ -130,6 +130,9 @@ class LearningAgent(Agent):
         ###########
         # When learning, implement the value iteration update rule
         #   Use only the learning rate 'alpha' (do not use the discount factor 'gamma')
+        if self.learning == True:
+            # EQUATION, alpha
+            # Q(s,a) = reward(s, a) + gamma * max(Q(s', a')) for s', a' in actions(s, a)
 
         return
 
