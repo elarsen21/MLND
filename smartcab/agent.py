@@ -114,7 +114,7 @@ class LearningAgent(Agent):
         elif epsilon > random.random():
             action = random.choice(self.valid_actions)
         else:
-            action = self.Q(get_maxQ)
+            # action = self.valid_actions(maxQ)
 
         return action
 
@@ -132,8 +132,10 @@ class LearningAgent(Agent):
         if self.learning == True:
             # EQUATION, alpha
             # Q(s,a) = reward(s, a) + gamma * max(Q(s', a')) for s', a' in actions(s, a)
+            # Q(s,a) = Q(s,a) + alpha(reward + gamma * maxQ(s',a') - Q(s,a))
+            self.Q = self.Q + self.alpha * reward + 0 * maxQ - self.Q
 
-        return
+        return self.Q
 
 
     def update(self):
