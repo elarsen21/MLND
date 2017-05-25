@@ -74,8 +74,7 @@ class LearningAgent(Agent):
         ## TO DO ##
         ###########
         # Calculate the maximum Q-value of all actions for a given state
-        # maxQ = max(state) ?
-        maxQ = max([q(next state, all actions)])
+        maxQ = max(state)
 
         return maxQ
 
